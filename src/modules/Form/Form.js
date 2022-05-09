@@ -3,7 +3,16 @@ import { useDispatch } from "react-redux";
 import { addItemActionCreator } from "../../redux/features/listSlice";
 
 const Form = () => {
-  const initialItemToDo = { id: 10, name: "", done: false };
+  const generateRandomNumber = () => {
+    return Math.floor(Math.random() * (10000 - 1)) + 1;
+  };
+
+  const initialItemToDo = {
+    id: 1,
+    name: "",
+    done: false,
+  };
+
   const [itemToDo, setItemToDo] = useState(initialItemToDo);
   const dispatch = useDispatch();
 
@@ -16,7 +25,9 @@ const Form = () => {
     if (!itemToDo.name) {
       return;
     }
+    itemToDo.id = generateRandomNumber();
     dispatch(addItemActionCreator(itemToDo));
+    setItemToDo(initialItemToDo);
   };
 
   return (
