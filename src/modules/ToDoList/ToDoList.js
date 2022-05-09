@@ -1,22 +1,17 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadListActionCreator } from "../../redux/features/listSlice";
-import toDoListData from "../../utils/toDoListData";
+import { useSelector } from "react-redux";
 import ToDoListItem from "../ToDoListItem/ToDoListItem";
 
 const ToDoList = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadListActionCreator(toDoListData));
-  }, [dispatch]);
-
   const list = useSelector((state) => state.list);
 
   return (
     <ul>
       {list.map((listItem) => {
-        return <ToDoListItem toDoListItem={listItem} key={listItem.id} />;
+        return (
+          <li key={listItem.id}>
+            <ToDoListItem toDoListItem={listItem} />
+          </li>
+        );
       })}
     </ul>
   );
