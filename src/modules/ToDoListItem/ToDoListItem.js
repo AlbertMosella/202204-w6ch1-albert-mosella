@@ -18,7 +18,7 @@ const ToDoListItem = ({ toDoListItem: { id, name, done } }) => {
         Delete
       </button>
       <button onClick={() => dispatch(markAsDoneActionCreator(id))}>
-        Done?
+        Done
       </button>
     </>
   );
