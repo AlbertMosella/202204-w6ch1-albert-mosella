@@ -37,7 +37,7 @@ describe("Given a ToDoList component", () => {
   });
 
   describe("When it receives an array with two list items from the state and the first delete button is clicked", () => {
-    test("Then it should call a function with an action object", () => {
+    test("Then it should call a function with an action object with the type remove item", () => {
       const action = { payload: 2, type: "list/removeItem" };
 
       render(
@@ -46,7 +46,22 @@ describe("Given a ToDoList component", () => {
         </Provider>
       );
 
-      userEvent.click(screen.getAllByRole("button")[1]);
+      userEvent.click(screen.getAllByRole("button", { name: /delete/i })[1]);
+
+      expect(mockUseDispatch).toHaveBeenCalledWith(action);
+    });
+  });
+
+  describe("When it receives an array with two list items from the state and the first Done? button is clicked", () => {
+    test("Then it should call a function with an action object with the type markAsDone", () => {
+      const action = { payload: 1, type: "list/markAsDone" };
+      render(
+        <Provider store={store}>
+          <ToDoList />
+        </Provider>
+      );
+
+      userEvent.click(screen.getAllByRole("button", { name: /done/i })[0]);
 
       expect(mockUseDispatch).toHaveBeenCalledWith(action);
     });
