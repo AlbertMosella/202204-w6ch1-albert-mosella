@@ -36,6 +36,7 @@ describe("Given a listSlice reducer", () => {
         type: "list/loadList",
         payload: valueToLoad,
       };
+
       const receivedResult = listReducer(initialValue, action);
 
       expect(receivedResult).toEqual(valueToLoad);
