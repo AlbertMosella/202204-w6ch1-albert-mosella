@@ -1,5 +1,8 @@
 import { useDispatch } from "react-redux";
-import { removeItemActionCreator } from "../../redux/features/listSlice";
+import {
+  markAsDoneActionCreator,
+  removeItemActionCreator,
+} from "../../redux/features/listSlice";
 
 const ToDoListItem = ({ toDoListItem: { id, name, done } }) => {
   const dispatch = useDispatch();
@@ -13,6 +16,9 @@ const ToDoListItem = ({ toDoListItem: { id, name, done } }) => {
       </p>
       <button onClick={() => dispatch(removeItemActionCreator(id))}>
         Delete
+      </button>
+      <button onClick={() => dispatch(markAsDoneActionCreator(id))}>
+        Done?
       </button>
     </>
   );
